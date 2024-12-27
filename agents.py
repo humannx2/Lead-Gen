@@ -1,5 +1,14 @@
 from crewai import Agent
+from tools import map_data
+from crewai import LLM
+from dotenv import load_dotenv
 
+load_dotenv()
+
+# Retrieve the API key
+api_key = os.getenv("OPENAI_API_KEY")
+
+llm = LLM(model="groq/gemma2-9b-it")
 
 # Extract leads
 lead_extractor=Agent(
@@ -9,8 +18,9 @@ lead_extractor=Agent(
     memory=True,
     verbose=True,
     allow_delegation=True,
-    tools=[],
+    tools=[map_data,],
     max_iter=2,
-    system_template="Uses the category given by the user to provide a list of places and companies under that category using google maps",
-    response_template="Give the detail of output in the format of Name, Address, Contact, Email."
+    llm=llm
+#     system_template="Uses the category given by the user to provide a list of places and companies under that category using google maps",
+#     response_template="Give the detail of output in the format of Name, Address, Contact, Email."
 )

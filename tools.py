@@ -3,12 +3,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-tool = SerperDevTool(
+map_data = SerperDevTool(
     search_url="https://google.serper.dev/maps",
     country="In",
-    # locale="In",
-    location=["Bengaluru", "Bangalore"],
+    locale="en",
+    location="Bengaluru, Karnataka, India",
     n_results=2,
 )
 
-print(tool.run(search_query="Security services"))
+# print(tool.run(search_query="Security services"))
