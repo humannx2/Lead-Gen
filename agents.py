@@ -2,13 +2,14 @@ from crewai import Agent
 from tools import map_data
 from crewai import LLM
 from dotenv import load_dotenv
+import os
 
 load_dotenv()
 
 # Retrieve the API key
 api_key = os.getenv("OPENAI_API_KEY")
 
-llm = LLM(model="groq/gemma2-9b-it")
+llm = LLM(model="groq/gemma2-9b-it",api_key=api_key)
 
 # Extract leads
 lead_extractor=Agent(
